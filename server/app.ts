@@ -1,6 +1,6 @@
 import { Hono } from "hono"
 import { HTTPException } from "hono/http-exception"
-import { requireUser } from "./auth.ts"
+import { isAuthConfigured, requireUser } from "./auth.ts"
 import { isDatabaseConfigured } from "./db.ts"
 import { listOpenItems, parseListBody, replaceOpenItems } from "./list.ts"
 
@@ -19,6 +19,10 @@ app.onError((error, context) => {
 })
 
 app.get("/api/list", async (context) => {
+  if (!isAuthConfigured()) {
+    return context.json({ error: "Autenticação do servidor não configurada." }, 503)
+  }
+
   const user = await requireUser(context.req.raw)
 
   if (!user) {
@@ -34,6 +38,10 @@ app.get("/api/list", async (context) => {
 })
 
 app.put("/api/list", async (context) => {
+  if (!isAuthConfigured()) {
+    return context.json({ error: "Autenticação do servidor não configurada." }, 503)
+  }
+
   const user = await requireUser(context.req.raw)
 
   if (!user) {

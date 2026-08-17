@@ -5,6 +5,7 @@ import type { IncomingMessage, ServerResponse } from 'node:http'
 import type { Connect, Plugin } from 'vite'
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
+import { applyLocalServerEnv } from './server/env.ts'
 import { app } from './server/app.ts'
 
 function neonApiPlugin(): Plugin {
@@ -32,7 +33,10 @@ function neonApiPlugin(): Plugin {
   }
 }
 
-export default defineConfig({
+export default defineConfig(() => {
+  applyLocalServerEnv()
+
+  return {
   plugins: [
     neonApiPlugin(),
     react(),
@@ -100,4 +104,5 @@ export default defineConfig({
       },
     }),
   ],
+}
 })

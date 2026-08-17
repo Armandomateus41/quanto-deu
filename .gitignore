@@ -12,6 +12,7 @@ dist
 dist-ssr
 dev-dist
 .vercel
+api/list.js
 .env
 .env.*
 !.env.example

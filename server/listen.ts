@@ -1,5 +1,8 @@
 import { serve } from "@hono/node-server"
 import { app } from "./app.ts"
+import { applyLocalServerEnv } from "./env.ts"
+
+applyLocalServerEnv()
 
 const port = Number(process.env.PORT ?? 3001)
 

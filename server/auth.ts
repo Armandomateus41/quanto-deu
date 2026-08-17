@@ -17,6 +17,10 @@ function getSupabaseKey(): string | undefined {
   )
 }
 
+export function isAuthConfigured(): boolean {
+  return Boolean(getSupabaseUrl() && getSupabaseKey())
+}
+
 function displayName(user: {
   email?: string
   user_metadata?: Record<string, unknown>

@@ -51,7 +51,7 @@ O Vite sobe a interface e a API em `/api`. Abra o endereço que o Vite mostrar. 
 
 ## Deploy (Vercel)
 
-O frontend é o build do Vite (`dist`). A API `/api/list` sobe como função Node na Vercel, reexportando o app Hono.
+O frontend é o build do Vite (`dist`). A API `/api/list` é empacotada no build (`npm run build:api`) e sobe como função Node na Vercel.
 
 Variáveis no projeto Vercel (Production, Preview e Development):
 
